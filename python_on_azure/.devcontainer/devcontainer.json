@@ -2,36 +2,36 @@
     "name": "Python Development Environment",
     "image": "mcr.microsoft.com/vscode/devcontainers/python:3.11",
     "postCreateCommand": "python -m venv .venv && .venv/bin/pip install -r .devcontainer/requirements.txt && cat .devcontainer/extensions.txt | xargs -L 1 code --install-extension && echo 'source .venv/bin/activate' >> ~/.bashrc",
-  	"features": {
-		"ghcr.io/jlaundry/devcontainer-features/azure-functions-core-tools:1": {
-			"version": "latest"
-		},
-		"ghcr.io/jlaundry/devcontainer-features/mssql-odbc-driver:1": {
-			"version": "17"
-		},
-    "ghcr.io/devcontainers/features/azure-cli:1": {
-      "version": "latest"
+    "features": {
+        "ghcr.io/jlaundry/devcontainer-features/azure-functions-core-tools:1": {
+            "version": "latest"
+        },
+        "ghcr.io/jlaundry/devcontainer-features/mssql-odbc-driver:1": {
+            "version": "17"
+        },
+        "ghcr.io/devcontainers/features/azure-cli:1": {
+            "version": "latest"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-toolsai.jupyter"
+            ],
+            "settings": {
+                "python.pythonPath": ".venv/bin/python"
+            }
+        }
+    },
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "forwardPorts": [7071],
+    "portsAttributes": {
+        "7071": {
+            "label": "Azure Functions",
+            "onAutoForward": "openBrowser"
+        }
     }
-  },
-  "customizations": {
-      "vscode": {
-          "extensions": [
-              "ms-python.python",
-              "ms-toolsai.jupyter"
-          ],
-          "settings": {
-              "python.pythonPath": ".venv/bin/python"
-          }
-      }
-  },
-  "settings": {
-      "terminal.integrated.shell.linux": "/bin/bash"
-  },
-  "forwardPorts": [7071],
-  "portsAttributes": {
-      "7071": {
-          "label": "Azure Functions",
-          "onAutoForward": "openBrowser"
-      }
-  }
 }
